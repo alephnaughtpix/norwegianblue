@@ -4,6 +4,7 @@ _data/*
 _posts/*
 _status/*
 _site/*
+archive/*
 assets/images/avatar*
 media/*
 scripts/windows/.jekyll*
