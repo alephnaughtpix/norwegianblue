@@ -1,0 +1,12 @@
+.project
+.pydevproject
+_data/*
+_posts/*
+_status/*
+_site/*
+assets/images/avatar*
+media/*
+scripts/windows/.jekyll*
+source/*
+followers.html
+following.html

@@ -1,0 +1,11 @@
+<section class="twitter-user">
+    <div class="name">
+        <a href="include.twitter_url" target="_blank">
+            {% if include.avatar_url %}
+            <img src="{{ include.avatar_url }}" alt="{{ include.handle }}'s profile image" />
+            {% else %}  
+            <img src="{{ "/assets/images/defaultAvatar.svg" | relative_url }}" alt="{{ include.handle }}'s profile image" />
+            {% endif %}
+            <span class="name">{{ include.handle }}</span>
+        </a>
+</section>

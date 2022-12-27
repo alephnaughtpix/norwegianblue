@@ -1,0 +1,10 @@
+<div class="tweet-container">
+    <div class="tweet">
+        {{ include.tweet_content }}
+    </div>
+    <div class="tweet-meta">
+        <a href="{{ include.original_url }}" target="_blank" class="tweet-link">
+            Posted on <time datetime="{{ include.created | date_to_xmlschema }}">{{ include.created | date: "%b %d, %Y" }}</time>
+        </a>
+    </div>
+</div>

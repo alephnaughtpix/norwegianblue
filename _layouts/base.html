@@ -1,0 +1,14 @@
+---
+layout: compress
+---
+<html>
+    <head>
+        <title>{% if page.title %}{{ page.title }}{% else %}{{site.screen_name}}'s tweet.{% endif %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{{"/assets/css/screen.css" | relative_url }}" media="screen">
+        <link rel="shortcut icon" href="{{"/assets/images/favicon.ico" | relative_url }}" type="image/x-icon">
+    </head>
+    <body>
+        {{ content }}
+    </body>
+</html>
