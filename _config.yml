@@ -48,6 +48,9 @@ collections:
   status:
     output: true
     permalink: "/status/:slug.html"
+  thread:
+    output: true
+    permalink: "/thread/:slug.html"
 
 defaults:
   - scope:
@@ -59,3 +62,5 @@ defaults:
       type: "status"
     values:
       layout: "single-tweet"
+
+# Twitter profile information is added to the site data here.

@@ -1,0 +1,13 @@
+---
+layout: tweetlist
+---
+{% assign all_tweets = site.status | sort:"created" %}
+{% assign thread_tweets = page.tweets | split:" " %}
+{% for thread_tweet in thread_tweets %}
+{% for tweet in all_tweets %}
+    {% capture tweet_id %}{{ tweet.id | replace:"/status/", "" }}{% endcapture %}
+    {% if tweet_id == thread_tweet %}
+        {% include tweet.html original_url=tweet.original_url created=tweet.created tweet_content=tweet.content %}
+    {% endif %}
+{% endfor %}
+{% endfor %}

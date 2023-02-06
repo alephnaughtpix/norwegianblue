@@ -3,10 +3,12 @@
 _data/*
 _posts/*
 _status/*
+_thread/*
 _site/*
 archive/*
 assets/images/avatar*
 media/*
+scripts/*.json
 scripts/windows/.jekyll*
 source/*
 followers.html
