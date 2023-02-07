@@ -1,4 +1,5 @@
 ---
 layout: base
 ---
-{% include tweet.html original_url=page.original_url created=page.created %}
+{{ tweet_content }}
+{% include tweet.html tweet_content=page.content original_url=page.original_url created=page.created %}

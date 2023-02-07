@@ -118,6 +118,7 @@ def get_twitter_api_guest_token(session, bearer_token):
 def get_twitter_users(session, bearer_token, guest_token, user_ids):
     """Asks Twitter for all metadata associated with user_ids."""
     users = {}
+    output_json_array = []
     while user_ids:
         max_batch = 100
         user_id_batch = user_ids[:max_batch]
@@ -129,10 +130,11 @@ def get_twitter_users(session, bearer_token, guest_token, user_ids):
         if not response.status_code == 200:
             raise Exception(f'Failed to get user handle: {response}')
         response_json = json.loads(response.content)
-        with open('output.json','w') as output_json:
-            output_json.write(response.text)
         for user in response_json:
+            output_json_array.append(user)
             users[user["id_str"]] = user
+    with open('output.json','w') as output_json:
+        output_json.write(json.dumps(output_json_array))
     return users
 
 
@@ -168,6 +170,7 @@ def lookup_users(user_ids, user_id_url_template, users, download_images=False, i
     if use_input_file:
         retrieved_users = get_users_from_cached_request(input_file)
         for user_id, user in retrieved_users.items():
+            print(f'Retrieved user data from cache: ', user["screen_name"])
             url = user_id_url_template.format(user_id)
             if "profile_image_url_https" in user:
                 profile_image_url = user["profile_image_url_https"] 
@@ -682,8 +685,7 @@ def parse_threads(input_filenames, user_account_id, output_thread, output_status
                         with open(tweet_filename, 'w', encoding='utf-8') as tweet_file:
                             tweet_file.write(tweet_content)
             thread_filename = os.path.join(output_thread, f'{thread_counter}.html')
-            thread_post = f'''
----
+            thread_post = f'''---
 layout: thread
 thread_id: {thread_counter}
 tweets: {tweet_id_list_output}
@@ -803,9 +805,11 @@ def parse_followings(data_folder, users, user_id_URL_template, output_following_
         description = users[id].description if id in users else '~unknown~description~'
         following_entry = '- handle: ' + handle + '\n  twitter_url: ' + user_id_URL_template.format(id)
         if full_name:
-            following_entry += '\n  name: ' + full_name
+            cleaned_name = full_name.replace('\n', ' ').replace('\r', ' ').replace("'", "''")
+            following_entry += f"\n  name: '{cleaned_name}'"
         if description:
-            following_entry += '\n  description: ' + description.replace('\n', ' ').replace('\r', ' ')
+            cleaned_description = description.replace('\n', ' ').replace('\r', ' ').replace("'", "''")
+            following_entry += f"\n  description: '{cleaned_description}'"
         if download_avatars:
             avatar_url = users[id].avatar if id in users else None
             if avatar_url:
@@ -839,7 +843,7 @@ def parse_followers(data_folder, users, user_id_URL_template, output_followers_f
     for follower in follower_json:
         if 'follower' in follower and 'accountId' in follower['follower']:
             follower_ids.append(follower['follower']['accountId'])
-    lookup_users(follower_ids, user_id_URL_template, users, True)
+    lookup_users(follower_ids, user_id_URL_template, users, True, 'followers.json')
     if os.path.exists(f'followers.json') and os.path.exists(f'output.json'):
         os.remove(f'followers.json')
     if os.path.exists(f'output.json'):
@@ -850,9 +854,11 @@ def parse_followers(data_folder, users, user_id_URL_template, output_followers_f
         description = users[id].description if id in users else '~unknown~description~'
         follower_entry = '- handle: ' + handle + '\n  twitter_url: ' + user_id_URL_template.format(id)
         if full_name:
-            follower_entry += '\n  name: ' + full_name
+            cleaned_name = full_name.replace('\n', ' ').replace('\r', ' ').replace("'", "''")
+            follower_entry += f"\n  name: '{cleaned_name}'"
         if description:
-            follower_entry += '\n  description: ' + description.replace('\n', ' ').replace('\r', ' ')
+            cleaned_description = description.replace('\n', ' ').replace('\r', ' ').replace("'", "''")
+            follower_entry += f"\n  description: '{cleaned_description}'"
         if download_avatars:
             avatar_url = users[id].avatar if id in users else None
             if avatar_url:
@@ -925,6 +931,7 @@ def main():
     media_sources = parse_tweets(input_filenames, username, users, archive_media_folder,
                                  output_media_folder_name, output_media_url_base, output_posts, output_status,tweet_icon_path, output_html_filename)
     parse_threads(input_filenames, user_account_id, output_thread, output_status)
+
     parse_followings(data_folder, users, user_id_URL_template, output_following_filename, output_media_folder_name )
     parse_followers(data_folder, users, user_id_URL_template, output_followers_filename, output_media_folder_name)
 
