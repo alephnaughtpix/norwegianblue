@@ -22,6 +22,11 @@ Jekyll framework for housing your Twitter archive.
 * As the script runs, it ask you a certain points whether you want to download data from the Twitter API, or download images and media. Not that the latter can take some time upon first run. The script will cache data from the Twitter API if you want to run it again.
 * Note if you want to run the script again, you need to clean up `_config.yml` to avoid duplicate settings.
 
+### Post Twitter API shutdown
+As noted above, on February 9th 2023, Twitter will shut down the free-to-use Twitter API. This means that the parser script will no longer be able to download data from the Twitter API. However, if you have previously run the parser script, it will have cached the data from the Twitter API, and you will be able to run the parser script again to generate the Jekyll pages.
+
+However, if you are lucky enough to have paid access to the Twitter API, you can run the parser script if you get a session bearer token. The variable name is `SESSION_BEARER_TOKEN`, set at line 44 in `scripts/parser.py`.
+
 ## What you get
 
 * Inside the folder `_status` is each tweet as a Jekyll page.
@@ -89,6 +94,26 @@ You might want to add your Jekyll project to a repository. To do this, you need 
 * Edit the file `.gitignore`, as it hides all the generated posts and downloaded media from git. Of the lines to keep in this file, you will need to keep `_site` and `source`.
 * You can now initialise a new git repository in a folder, and add the files from your project to the repository.
 
+I should note that, with the amount of status posts combined with the amount of media downloaded, that this project will tend to be very large. If you're thinking of hosting this repository on the likes of GitHub, never mind hosting it on GitHub pages, I would recommend you to forget it, or at least consider using [Git LFS](https://git-lfs.github.com) to store the project, as standard GitHub projects have a maximum size of 100MB, and your project will likely be larger then that. Even if the resulting project is less than 100MB, it will still be really pushing it to host it on GitHub pages.
+
+Another issue is that if you have repository host that can handle this size of project, it's going to be difficult to cope with the sheer amount of files on the first push. It might better to host it yourself on your own server if you have one, as in that case, you could FTP the whole project to the server, set up a Git service on there, and then do a `git init` on your project *in situ*.
+
 ### Working with the Jekyll project
 
 As noted above, it takes a long time to generate a site from your project, which makes developing the site difficult. To make this easier, I've found that having a copy of the folders `_status` and `_thread` with only a small amount of posts in them makes it much easier, and when I'm done I can slot the original folders back in. Obviously make sure you have made a copy of these folders, and not just moved them, as you will need the originals to generate the site.
+
+### Layouts
+
+The folllowing layouts are provided:
+* `base.html`: The base layout for all pages.
+* `compress.html`: A utility layout to compress the HTML output.
+* `single-tweet.html`: The layout for a single tweet.
+* `thread.html`: The layout for a thread of tweets.
+* `tweetlist.html`: The layout for a list of tweets.
+* `nb_day_index.html`: The layout for the index of tweets for a day.
+* `nb_month_index.html`: The layout for the index of tweets for a month.
+* `nb_year_index.html`: The layout for the index of tweets for a year.
+
+### Includes
+* `tweet.html`: HTML for a single tweet.
+* `twitter-user.html`: HTML for a Twitter user profile.

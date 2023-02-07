@@ -533,7 +533,7 @@ def parse_profile(input_folder, users, user_id_url_template):
     if avatar_url:
         avatar_url_ext = os.path.splitext(avatar_url)[1]
     # Append info to Jekyll config
-    with open(f'../_config.yml','a') as profile_config:
+    with open(f'../_config.yml','a', encoding='utf8') as profile_config:
         if bio:
             profile_config.write('\n' + f'bio: {bio}')
         if location:
@@ -899,6 +899,10 @@ def main():
     output_following_filename = '../_data/following.yaml'
     output_followers_filename = '../_data/followers.yaml'
     user_id_URL_template = 'https://twitter.com/i/user/{}'
+
+    create_or_enter_output_directory(output_status)
+    create_or_enter_output_directory(output_thread)
+    create_or_enter_output_directory(data_folder)
 
     users = {}
 
