@@ -902,7 +902,7 @@ def main():
 
     create_or_enter_output_directory(output_status)
     create_or_enter_output_directory(output_thread)
-    create_or_enter_output_directory(data_folder)
+    create_or_enter_output_directory('../_data/')
 
     users = {}
 
