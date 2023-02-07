@@ -83,7 +83,7 @@ Once your have run the parser script, you can make a copy of this project for yo
 * To generate a static website from your project, go to the root directory of the project and type the command:
   `bundle exec jekyll build --verbose --config _config.yml,_config.dev.yml`
 
-  **WARNING!** Unless you have been *very* quiet on Twitter, this site generation process will take a **LONG** time. This is why I put `--verbose` in the command, so you can see what's going on, and don't think your computer has crashed.
+  **WARNING!** Unless you have been *very* quiet on Twitter, this site generation process will take a **LONG** time. This is why I put `--verbose` in the command, so you can see what's going on, and you don't think your computer has crashed.
 * Once finished generated site will be in the folder `_site`.
 
 ### Preparing for adding to a repository
@@ -96,7 +96,7 @@ You might want to add your Jekyll project to a repository. To do this, you need 
 
 I should note that, with the amount of status posts combined with the amount of media downloaded, that this project will tend to be very large. If you're thinking of hosting this repository on the likes of GitHub, never mind hosting it on GitHub pages, I would recommend you to forget it, or at least consider using [Git LFS](https://git-lfs.github.com) to store the project, as standard GitHub projects have a maximum size of 100MB, and your project will likely be larger then that. Even if the resulting project is less than 100MB, it will still be really pushing it to host it on GitHub pages.
 
-Another issue is that if you have repository host that can handle this size of project, it's going to be difficult to cope with the sheer amount of files on the first push. It might better to host it yourself on your own server if you have one, as in that case, you could FTP the whole project to the server, set up a Git service on there, and then do a `git init` on your project *in situ*.
+Another issue is that if you have a repository host that can handle this size of project, it's going to be difficult to cope with the sheer amount of files on the first push. It might better to host it yourself on your own server if you have one, as in that case, you could FTP the whole project to the server, set up a Git service on there, and then do a `git init` on your project *in situ*.
 
 ### Working with the Jekyll project
 
