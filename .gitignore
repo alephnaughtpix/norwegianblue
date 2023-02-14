@@ -1,9 +1,9 @@
 .project
 .pydevproject
-_data/*
+_data/*.yaml
 _posts/*
-_status/*
-_thread/*
+_status/*.html
+_thread/*.html
 _site/*
 archive/*
 assets/images/avatar*
@@ -11,5 +11,3 @@ media/*
 scripts/*.json
 scripts/windows/.jekyll*
 source/*
-followers.html
-following.html

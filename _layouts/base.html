@@ -9,6 +9,17 @@ layout: compress
         <link rel="shortcut icon" href="{{"/assets/images/favicon.ico" | relative_url }}" type="image/x-icon">
     </head>
     <body>
+        <header>
+            <a href="{{ "/" | relative_url }}" class="logo">
+                {% include twitter_bird.html %}
+            </a>
+            <a href="{{ "/" | relative_url }}" class="title">
+                {{ site.title }}
+            </a>
+        </header>
+        <main>
         {{ content }}
+        </main>
+        <footer></footer>
     </body>
 </html>

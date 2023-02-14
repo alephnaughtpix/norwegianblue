@@ -1,4 +1,4 @@
-**NOTE: Since Twitter is about to shut down the free-to-use Twitter API on 9th Febrary 2023, this will like be the last version of the parser script. From then on, it will only work if you have previously run the script and have the data cached. From then, I will try to keep the Jekyll theme up to date.**
+**NOTE: Since Twitter has shut doen down the free-to-use Twitter API as of 14th Febrary 2023, this will likely be the last version of the parser script. From then on, it will only work if you have previously run the script and have the data cached. I am now working on keeping the Jekyll theme up to date.**
 
 # Norwegian Blue
 
@@ -19,14 +19,16 @@ Jekyll framework for housing your Twitter archive.
 * Download your Twitter archive from [Twitter](https://twitter.com/settings/your_twitter_data).
 * Unzip the archive into the folder `source`.
 * From the folder `scripts`, run `python3 parser.py`.
-* As the script runs, it ask you a certain points whether you want to download data from the Twitter API, or download images and media. Note that the latter can take some time upon first run. The script will cache data from the Twitter API if you want to run it again.
+* As the script runs, it ask you a certain points whether you want to download data from the Twitter API, (see section *"Post Twitter API Shutdown"* below.) or download images and media. Note that the latter can take some time upon first run. The script will cache data from the Twitter API if you want to run it again.
 * Note if you want to run the script again, you need to clean up `_config.yml` to avoid duplicate settings.
 
 ### Post Twitter API shutdown
 
-As noted above, on February 9th 2023, Twitter will shut down the free-to-use Twitter API. This means that the parser script will no longer be able to download data from the Twitter API. However, if you have previously run the parser script, it will have cached the data from the Twitter API, and you will be able to run the parser script again to generate the Jekyll pages.
+As noted above, as of February 14th 2023, Twitter has shut down the free-to-use Twitter API. This means that the parser script will no longer be able to download data from the Twitter API as is. However, if you have previously run the parser script, it will have cached the data from the Twitter API, and you will be able to run the parser script again to generate the Jekyll pages.
 
-However, if you are lucky enough to have paid access to the Twitter API, you can run the parser script if you get a session bearer token. The variable name is `SESSION_BEARER_TOKEN`, set at line 44 in `scripts/parser.py`.
+However, if you are lucky enough to have paid access to the Twitter API, you can run the parser script if you get a session bearer token. The variable name is `SESSION_BEARER_TOKEN`, set at line 44 in `scripts/parser.py`. 
+
+Note that how much data you can download from the Twitter API is limited by your access level. See [Twitter's documentation](https://developer.twitter.com/en/docs/twitter-api/rate-limits) for more information.
 
 ## What you get
 

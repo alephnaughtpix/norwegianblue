@@ -3,9 +3,32 @@
 
 $dark-background: #000000;
 $dark-text: rgb(231, 233, 234);
+$twitter-blue: rgb(29, 155, 240);
 
 body {
     background-color: $dark-background;
     color: $dark-text;
     font-size: 15px;
+}
+
+.bird-icon {
+    fill: $twitter-blue;
+    width: 24px;
+    height: 24px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .logo {
+        flex-grow: 1;
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .title { 
+        flex-grow: 6;
+    }
 }

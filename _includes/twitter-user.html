@@ -1,11 +1,15 @@
 <section class="twitter-user">
     <div class="name">
-        <a href="include.twitter_url" target="_blank">
-            {% if include.avatar_url %}
-            <img src="{{ include.avatar_url }}" alt="{{ include.handle }}'s profile image" />
+        <a href="include.twitter_user.twitter_url" target="_blank">
+            {% if include.avatar %}
+            {% capture avatar_url %}/media/avatars/{{ include.twitter_user.avatar }}{% endcapture %}
+            <img src="{{ avatar_url | relative_url }}" class="avatar" alt="{{ include.twitter_user.handle }}'s profile image" title="{{ include.twitter_user.handle }}'s profile image" />
             {% else %}  
-            <img src="{{ "/assets/images/defaultAvatar.svg" | relative_url }}" alt="{{ include.handle }}'s profile image" />
+            <img src="{{ "/assets/images/defaultAvatar.svg" | relative_url }}" alt="{{ include.twitter_user.handle }}'s profile image" title="{{ include.twitter_user.handle }}'s profile image" />
             {% endif %}
-            <span class="name">{{ include.handle }}</span>
+            <span class="name">{{ include.twitter_user.handle }}</span>
         </a>
+        {% if include.twitter_user.description %}
+        <div class="description">{{ include.twitter_user.description }}</div>
+        {% endif %}
 </section>

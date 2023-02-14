@@ -1,0 +1,2 @@
+This is where data for your Twitter followers and people who follow you are stored. 
+See README.md for more information.
