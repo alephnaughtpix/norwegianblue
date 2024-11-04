@@ -298,7 +298,8 @@ day: {timestamp_date.day}
             front_matter += f'reply_to_id: {reply_to_id}' + '\n'
         header_html += f'Replying to <a href="{replying_to_url}">{name_list}</a><br>'
     # replace image URLs with image links to local files
-    if 'entities' in tweet and 'media' in tweet['entities'] and 'extended_entities' in tweet and 'media' in tweet['extended_entities']:
+    if 'entities' in tweet and 'media' in tweet['entities'] 
+        and 'extended_entities' in tweet and 'media' in tweet['extended_entities']:
         original_url = tweet['entities']['media'][0]['url']
         html = ''
         for media in tweet['extended_entities']['media']:
@@ -647,6 +648,9 @@ def parse_profile(input_folder, users, user_id_url_template):
             print('No user profile information was found.')
             return None
 
+'''
+Parsing personal threads.
+'''
 def parse_threads(input_filenames, user_account_id, output_thread, output_status):
     print('\n== PARSING PERSONAL THREADS ======================================\n')
     create_or_enter_output_directory(output_thread)
@@ -667,7 +671,7 @@ def parse_threads(input_filenames, user_account_id, output_thread, output_status
     for tweet_id in tweets.keys():
         tweet_id_list=[]
         while tweets[tweet_id] is not None:
-            tweet_id_list.append(tweet_id)#
+            tweet_id_list.append(tweet_id)
             old_tweet_id = tweet_id
             tweet_id = tweets[tweet_id]
             tweets[old_tweet_id] = None # Mark as processed

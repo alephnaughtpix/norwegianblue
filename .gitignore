@@ -11,3 +11,6 @@ media/*
 scripts/*.json
 scripts/windows/.jekyll*
 source/*
+*.pyc
+*.pyo
+venv/
