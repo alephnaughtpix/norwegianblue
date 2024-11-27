@@ -1,4 +1,5 @@
-from lib.config import Config
+from bs4 import BeautifulSoup
+from datetime import datetime
 import json
 import os
 import requests
@@ -27,13 +28,43 @@ class Utils:
             data =  prefix + ''.join(data[1:])
             # parse the resulting JSON and return as a dict
             return json.loads(data)
+        
+    # This cleans up a string containing HTML so that it doesn't contain
+    # the elevently bazillion attributes that React or Angular add to it.
+    @staticmethod
+    def sanitise_html(html):
+        html_parser = BeautifulSoup(html, 'html.parser')
+        a_tags = html_parser.find_all('a')
+        if a_tags:
+            allow_attributes = ['href', 'target']
+            for tag in a_tags:
+                tag.attrs = {key: value for key, value in tag.attrs.items()
+                        if key in allow_attributes}
+        img_tags = html_parser.find_all('img')
+        if img_tags:
+            allow_attributes = ['src', 'alt']
+            for tag in img_tags:
+                tag.attrs = {key: value for key, value in tag.attrs.items()
+                        if key in allow_attributes}
+        return str(html_parser)
+    
+    @staticmethod
+    def import_date(date_string):
+        return datetime.strptime(date_string, '%a %b %d %H:%M:%S %z %Y')
+    
+    @staticmethod
+    def export_date(date):
+        return date.strftime('%a %b %d %H:%M:%S %z %Y')
+        
 
 class UriLoader():
-    def __init__(self, uri, config):
+    def __init__(self, uri, config, head = False, redirects = True):
         self.uri = uri
         self.data = None
         self.user_agent = config.user_agent
         self.success = False
+        self.head = head
+        self.redirects = redirects
         
     def __enter__(self):
         self.load()
@@ -45,8 +76,15 @@ class UriLoader():
     def load(self):
         headers = {'User-Agent': self.user_agent}
         try:
-            self.data = requests.get(self.uri, headers=headers)
-            self.success = self.data.status_code == 200
+            if self.head:
+                self.data = requests.head(self.uri, headers=headers, allow_redirects=self.redirects)
+            else:
+                self.data = requests.get(self.uri, headers=headers, allow_redirects=self.redirects)
+            if self.redirects:
+                self.success = self.data.status_code == 200
+            else:
+                #print(f"HEAD: {self.data.headers}")
+                self.success = self.data.status_code in [200, 301, 302]
         except Exception as err:
             print(f"FAIL. Original URL of {self.uri} because of exception: {err}")
             self.success = False

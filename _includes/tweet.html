@@ -1,10 +1,45 @@
-<div class="tweet-container">
-    <div class="tweet">
-        {{ include.tweet_content }}
-    </div>
-    <div class="tweet-meta">
-        <a href="{{ include.original_url }}" target="_blank" class="tweet-link">
-            Posted on <time datetime="{{ include.created | date_to_xmlschema }}">{{ include.created | date: "%b %d, %Y" }}</time>
-        </a>
-    </div>
-</div>
+<article class="tweet">
+    <section class="avatar">
+        <img src="{{ site.twitter_profile.local_url }}" alt="{{ site.twitter_profile.screen_name }}"/>
+    </section>
+    <section class="body">
+        <header>
+            <ul>
+                <li><a href="{{ "/" | relative_url }}">{{ site.twitter_profile.screen_name }}</a></li>
+                <li><a href="{{ "/" | relative_url }}">@{{ site.twitter_profile.username }}</a></li>
+            </ul>
+        </header>
+        <section class="content">
+            <p>{{ include.tweet.content }}</p>
+        </section>
+        {% if include.tweet.media %}
+            <section class="media">
+                {% for current_media in tweet.media %}
+                {% if current_media.type == "photo" %}
+                    <img src="{{ current_media.local_filename }}" alt="Photo"/>
+                {% elsif current_media.type == "video" %}
+                    <video controls>
+                        <source src="{{ current_media.local_filename }}" type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                {% elsif current_media.type == "animated_gif" %}
+                    <video controls loop>
+                        <source src="{{ current_media.local_filename }}" type="video/mp4"/>
+                        Your browser does not support the video tag.
+                    </video>
+                {% endif %}
+                {% endfor %}
+                <img src="{{ include.tweet.media }}" alt="Media"/>
+            </section>
+        {% endif %}
+        </section>
+        <footer>
+            <ul>
+                <li><time datetime="{{ include.created | date_to_xmlschema }}">{{ include.created | date: "%b %d, %Y" }}</time></li>
+                <li>0 favourites</li>
+                <li>0 retweets</li>
+                <li><a href="https://x.com/{{ site.twitter_profile.username }}/{{ tweet.id }}" target="_blank">View on Twitter</a></li>
+            </ul>
+        </footer>
+    </section>
+</article>

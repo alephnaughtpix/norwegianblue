@@ -7,15 +7,36 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="dead_parrot.svg"
    inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   sodipodi:docname="dead_bird.svg"
-   id="svg6"
+   id="svg8"
    version="1.1"
-   class="r-13v1u17 r-4qtqp9 r-yyyyoo r-16y2uox r-8kz0gk r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-lrsllp"
-   aria-hidden="true"
-   viewBox="0 0 24 24">
+   viewBox="0 0 210 210"
+   height="210mm"
+   width="210mm">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     inkscape:window-maximized="0"
+     inkscape:window-y="0"
+     inkscape:window-x="52"
+     inkscape:window-height="728"
+     inkscape:window-width="1274"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="621.63572"
+     inkscape:cx="57.682632"
+     inkscape:zoom="0.24748737"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
   <metadata
-     id="metadata12">
+     id="metadata5">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -26,33 +47,29 @@
       </cc:Work>
     </rdf:RDF>
   </metadata>
-  <defs
-     id="defs10" />
-  <sodipodi:namedview
-     inkscape:current-layer="svg6"
-     inkscape:window-maximized="1"
-     inkscape:window-y="-8"
-     inkscape:window-x="-8"
-     inkscape:cy="12"
-     inkscape:cx="12"
-     inkscape:zoom="22.416667"
-     showgrid="false"
-     id="namedview8"
-     inkscape:window-height="705"
-     inkscape:window-width="1366"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     guidetolerance="10"
-     gridtolerance="10"
-     objecttolerance="10"
-     borderopacity="1"
-     bordercolor="#666666"
-     pagecolor="#ffffff" />
   <g
-     transform="rotate(-90,12.29,11.979)"
-     id="g4">
-    <path
-       id="path2"
-       d="m 23.643,4.937 c -0.835,0.37 -1.732,0.62 -2.675,0.733 0.962,-0.576 1.7,-1.49 2.048,-2.578 -0.9,0.534 -1.897,0.922 -2.958,1.13 -0.85,-0.904 -2.06,-1.47 -3.4,-1.47 C 14.086,2.752 12,4.838 12,7.412 12,7.776 12.042,8.13 12.12,8.472 8.247,8.277 4.816,6.422 2.518,3.604 c -0.4,0.69 -0.63,1.49 -0.63,2.342 0,1.616 0.823,3.043 2.072,3.878 C 3.196,9.799 2.478,9.59 1.85,9.241 v 0.06 c 0,2.257 1.605,4.14 3.737,4.568 -0.392,0.106 -0.803,0.162 -1.227,0.162 -0.3,0 -0.593,-0.028 -0.877,-0.082 0.593,1.85 2.313,3.198 4.352,3.234 -1.595,1.25 -3.604,1.995 -5.786,1.995 -0.376,0 -0.747,-0.022 -1.112,-0.065 2.062,1.323 4.51,2.093 7.14,2.093 8.57,0 13.255,-7.098 13.255,-13.254 0,-0.2 -0.005,-0.402 -0.014,-0.602 0.91,-0.658 1.7,-1.477 2.323,-2.41 z" />
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <g
+       transform="matrix(34.228141,0,0,34.228141,-246.44337,-177.5286)"
+       id="g57">
+      <path
+         id="path2"
+         d="m 8.4317338,5.1873692 c 0.0979,0.22093 0.16404,0.45826 0.19394,0.70777 -0.1524,-0.25453 -0.3942299,-0.4498 -0.6820999,-0.54187 0.14129,0.23812 0.24395,0.50191 0.29898,0.78264 -0.23918,0.22489 -0.38894,0.54504 -0.38894,0.89958 0,0.68051 0.5519299,1.23243 1.2329599,1.23243 0.0963,0 0.18997,-0.0111 0.28046,-0.0317 -0.0516,1.02473 -0.54239,1.9325198 -1.2879899,2.5405298 0.18256,0.10583 0.3942299,0.16669 0.6196499,0.16669 0.42757,0 0.80513,-0.21776 1.02606,-0.54822 -0.007,0.20214 -0.0619,0.39211 -0.15425,0.55827 h 0.0159 c 0.5971712,0 1.0953812,-0.42466 1.2086212,-0.9887498 0.028,0.1037198 0.0429,0.2124598 0.0429,0.3246498 0,0.0794 -0.007,0.15689 -0.0217,0.23203 0.48948,-0.15689 0.84614,-0.6119798 0.85567,-1.1514598 0.33073,0.42201 0.52784,0.9535598 0.52784,1.5308798 0,0.0995 -0.006,0.19764 -0.0172,0.29421 0.35005,-0.54557 0.55378,-1.19327 0.55378,-1.8891198 0,-2.26748 -1.87802,-3.50705 -3.5067912,-3.50705 -0.0529,0 -0.10636,0.001 -0.15928,0.004 -0.1741,-0.24077 -0.39079,-0.44979 -0.63765,-0.61463 z"
+         style="fill:#00aad4;stroke-width:0.264583" />
+      <g
+         id="g51"
+         transform="matrix(0.45019691,0.45019691,-0.45019691,0.45019691,8.1557691,-0.15836871)">
+        <path
+           id="path32"
+           d="m 8.6486328,6.5760934 v 1.1581791 h 0.136886 V 6.5760934 Z"
+           style="fill:none;stroke:#000000;stroke-width:0.212116px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+        <path
+           style="fill:none;stroke:#000000;stroke-width:0.212116px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+           d="M 8.1261747,7.1791201 H 9.2843538 V 7.0422341 H 8.1261747 Z"
+           id="path32-6" />
+      </g>
+    </g>
   </g>
 </svg>

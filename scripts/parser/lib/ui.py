@@ -194,4 +194,7 @@ class ProgressWindow:
     def update_progress(self, progress):
         self.progress['value'] = progress
         self.progress_window.update()
+        
+    def close(self):
+        self.progress_window.destroy()
  

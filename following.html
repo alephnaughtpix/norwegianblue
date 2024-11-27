@@ -1,7 +1,9 @@
 ---
 layout: base 
 ---
-{% assign following = site.data.following | sort: "handle" %}
-{% for user in following %}
+{% assign users = site.data.users | sort: "username" %}
+{% for user in users %}
+    {% if user.following %}
     {% include twitter-user.html twitter_user=user %}
+    {% endif %}
 {% endfor %}

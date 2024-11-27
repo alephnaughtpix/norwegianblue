@@ -1,8 +1,63 @@
-**NOTE: Since Twitter has shut doen down the free-to-use Twitter API as of 14th Febrary 2023, this will likely be the last version of the parser script. From then on, it will only work if you have previously run the script and have the data cached. I am now working on keeping the Jekyll theme up to date.**
-
 # Norwegian Blue
 
-Jekyll framework for housing your Twitter archive.
+## It is an X-Twitter, it has ceased to be!
+
+Norwegian Blue is a Jekyll framework and conversion tool for housing your Twitter archive.
+
+## Overview
+
+When you decide to move on from Twitter, you given an option of downloading an archive of your time on Twitter. This is a pretty good option as far as it goes, but it does have a few problems.
+
+* Any link goes through X-Twitter's t.co link shortener, so if that goes down, you lose the link. This is particularly annoying as the archive *does* contain the original link.
+* If you click on an image or video, it takes you to the X-Twitter page for that media.
+* Tweets are in a JSON format, which is not very easy to copy and paste into a blog post.
+* The archive does not contain the avatars of the people you follow and who follow you.
+
+Norwegian Blue contains a conversion tool to convert your Twitter archive into a Jeykll based website, allowing you (depending on the size) to host your Twitter archive on web hosts compatible with Jekyll, such as GitHub Page, GitLab Pages, or Netlify, or even your own server. As the output of a Jekyll project is static HTML, CSS, and JavaScript, it is very easy to host, and very quick.
+
+### Features
+Out of the box, Norwegian Blue provides the following features:
+
+* A Jekyll project with layouts and includes for displaying your Twitter archive.
+* A parser tool to convert your Twitter archive into Jekyll pages.
+* Your tweets, sorted by year, month, and day.
+* Threads of tweets.
+* Media files, such as images and videos.
+* Where possible, the avatars of the people you follow and who follow you.
+* Any threads of tweets you have made.
+* If you've regualrly used hashtags, the archive will contain an index of tweets for each hashtag.
+
+As this is a Jekyll project, you can customise the layouts and includes to your heart's content, and add your own CSS and JavaScript to make the site your own.
+
+### What it doesn't do
+* The conversion is designed to not use the Twitter API, and query the website as little as possible, so there will be some information it cannot obtain, such as information about some of your followers.
+* **Direct messages**. As this is a public facing website, it doesn't make sense to include direct messages. Your Twitter archive will contain your direct messages if you want to keep them.
+
+## What you need
+
+* **Your Twitter archive**. You can download this from Twitter. Go to your settings, and at the bottom of the page, you will see an option to request a download your Twitter archive. It will normally take around a week for this request to be processed, and you will be sent a link to download a zip file of your Twitter archive. Once you do this you will need to unzip the archive into a folder, which you'll point to when you run the parser tool.
+* **Your Twitter pages for your Followers and Following**. This is more a nice to have, but the parser tool can parse these pages to get more information about the people you follow and who follow you. Obviously I wouldn't recommend this if you have elevently squillion followers, but if you have a reasonable amount, say less than 2000, this is an option. The next section will explain how to do save these pages.
+
+### Getting your Twitter pages for your Followers and Following
+1. What you will need is a web browser extension that can save a web page as a complete web page including images. The one that I found the best was **SingleFile** which you can get an extension for [Firefox](https://addons.mozilla.org/en-US/firefox/addon/single-file/) and [Chrome](https://chromewebstore.google.com/detail/singlefile/mpiodijhokgodhhofbcjdecpffjipkle). This extension will save the page as a single HTML file, including images, CSS, and JavaScript.
+2. Log on to Twitter, and go to your followers page.
+3. Go to bottom of the page, and it will load more followers. Keep moving down the page until you have all your followers loaded.
+4. Once you have all your followers loaded, go back to the top of the page.
+5. Click on the SingleFile icon in your browser, and save the page as a complete web page. This will take a couple of minutes, depending on how many followers you have. Once it's done, the saved page will be saved to your downloads folder. Rename the file to something sensible like `followers.html` and move it to a safe folder.
+6. Repeat steps 3-5 for your following page, saving the page as something like `following.html`.
+7. For reference I had around 1000 followers and around 1000 following, and the saved pages were around 17-20MB each. The size is dependent on the number of followers and following you have, but also includes the images as data URLs, which the parser tool can extract and save as separate files. This saves the bother of having to download the images separately.
+
+## How to use
+Converting your Twitter archive into a website is a two-step process:
+1. You run the parser tool, which will convert your Twitter archive into a Jeykll project.
+2. You then run a Jekyll build to generate the website.
+Many Jekyll compatible hosts, such as GitHub Pages, GitLab Pages, and Netlify, will actually do step 2 for you, but you can also host the site on your own server.
+
+## Running the parser tool
+
+### Windows
+
+### Linux
 
 ## Requirements
 
@@ -12,7 +67,7 @@ Jekyll framework for housing your Twitter archive.
 
 ## Work used
 
-* The archive parser script is a modified version of Tim Hutton's [Twitter Archive Parser](https://github.com/timhutton/twitter-archive-parser) from November, modified to output Jekyll source pages in a format for this project.
+* The parser tool is hugely indebted to Tim Hutton's [Twitter Archive Parser](https://github.com/timhutton/twitter-archive-parser) from November, modified to output Jekyll source pages in a format for this project.
 
 ## How to use
 
@@ -26,7 +81,7 @@ Jekyll framework for housing your Twitter archive.
 
 As noted above, as of February 14th 2023, Twitter has shut down the free-to-use Twitter API. This means that the parser script will no longer be able to download data from the Twitter API as is. However, if you have previously run the parser script, it will have cached the data from the Twitter API, and you will be able to run the parser script again to generate the Jekyll pages.
 
-However, if you are lucky enough to have paid access to the Twitter API, you can run the parser script if you get a session bearer token. The variable name is `SESSION_BEARER_TOKEN`, set at line 44 in `scripts/parser.py`. 
+However, if you are lucky enough to have paid access to the Twitter API, you can run the parser script if you get a session bearer token. The variable name is `SESSION_BEARER_TOKEN`, set at line 44 in `scripts/parser.py`.
 
 Note that how much data you can download from the Twitter API is limited by your access level. See [Twitter's documentation](https://developer.twitter.com/en/docs/twitter-api/rate-limits) for more information.
 

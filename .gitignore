@@ -14,3 +14,4 @@ source/*
 *.pyc
 *.pyo
 venv/
+parser/windows/*
