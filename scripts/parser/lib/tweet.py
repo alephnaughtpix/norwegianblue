@@ -218,7 +218,6 @@ class Tweet:
                     if str(url['url']) == str(tco_url):
                         replacment_url = '<a href="' + url['expanded_url'] + '">' + url['display_url'] + '</a>'
                         source_full_text = source_full_text.replace(str(tco_url), replacment_url)
-                        #print('Replaced:', replacment_url)
         # Next come the hashtags.
         if self.hashtags:
             for hashtag in self.hashtags:

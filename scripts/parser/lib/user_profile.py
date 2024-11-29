@@ -62,16 +62,19 @@ class UserProfile:
             yaml_string += f"  screen_name: {self.screen_name}\n"
         if self.description:
             yaml_string += f"  description: {self.description}\n"
+            #print('description:', self.description)
         if self.url:
             yaml_string += f"  url: \"{self.url}\"\n"
         if self.avatar_url:
             yaml_string += f"  avatar_url: \"{self.avatar_url}\"\n"
         if self.local_url:
-            yaml_string += f"  local_url: \"{self.local_url}\"\n"
+            local_url = self.local_url.replace('\\', '\\\\')
+            yaml_string += f"  local_url: \"{local_url}\"\n"
         if self.header_url:
             yaml_string += f"  header_url: \"{self.header_url}\"\n"
         if self.local_header_url:
-            yaml_string += f"  local_header_url: \"{self.local_header_url}\"\n"
+            local_header_url = self.local_header_url.replace('\\', '\\\\')
+            yaml_string += f"  local_header_url: \"{local_header_url}\"\n"
         if self.location:
             yaml_string += f"  location: {self.location}\n"
         if self.joined_date:

@@ -1,9 +1,13 @@
 ---
 layout: base 
+title: "Users Following Me"
 ---
+<h1>{{ page.title }}</h1>
+<section class="twitter-list">
 {% assign users = site.data.users | sort: "username" %}
 {% for user in users %}
     {% if user.follower %}
     {% include twitter-user.html twitter_user=user %}
     {% endif %}
 {% endfor %}
+</section>

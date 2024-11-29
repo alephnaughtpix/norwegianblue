@@ -240,26 +240,49 @@ class Processor:
                 #print('Follow state:', follow_state)
                 
         # This is where it gets dirty! The desciption text is up a parent, and then the next sibling,
-        # we can't use the '.string' method to get it as it's a div tag containing a series of <span> tags,
-        # containging parts of the description text in order. For example, links are in separate <span> tags.
-        # This also contains emjois, which are in <img> containing a data url for an SVG image. (Quite a good
+        # we can't use the '.string' method to get it as it's a div tag containing a series of <span>, <div>
+        # or <a> tags, containing parts of the description text in order. For example, links are in separate 
+        # <span> tags. This also contains emojis, which are in <img> containing a data url for an SVG image. (Quite a good
         # idea, really, as it means they're compatible across devices.)
         description_tag = None
         description = None
         if follow_state_tag:
             description_tag = follow_state_tag.parent.next_sibling
             if description_tag:
-                description_parts = description_tag.select('span')
+                description_parts = description_tag.findChildren(recursive=False)
                 if description_parts:
                     description = ''
                     for part in description_parts:
                         if part:
-                            #print('Part:', part.contents)
-                            for content in part.contents:
-                                if content:
-                                    description += str(content).replace('\n', '').replace('\'', '\'\'').replace('\"', '\\\"')   
+                            link_start = ''
+                            if part.name == 'img':
+                                description += '<img src=\\\"' + part['src'] + '\\\"/>'
+                            else:
+                                for content in part.contents:
+                                    if content:
+                                        content_result = ''
+                                        if content.name == 'span':
+                                            content_result += str(content.text)
+                                            if content_result.startswith('http'):
+                                                link_start = content_result
+                                                content_result = ''
+                                        elif content.name == 'div':
+                                            twitter_handle = content.select('a')
+                                            if twitter_handle:
+                                                content_result = '<a href=\"' + twitter_handle[0]['href'] + '\">' + twitter_handle.text + '</a>'
+                                            else:
+                                                content_result = str(content)
+                                        else:
+                                            if link_start != '':
+                                                content_result = '<a href=\"' + link_start + str(content) + '\">' + str(content) + '</a>' 
+                                                link_start = ''
+                                            else:
+                                                content_result = str(content)
+                                        if content_result != '':
+                                            description += str(content_result).replace('\n', '<br/>').replace('\"', '\\\"')
                     if description != '':
                         description = '"' + Utils.sanitise_html(description) + '"'
+                        description = description.replace('\'\\\"', '\\\"').replace('\\\"\'', '\\\"')
         return user_id, username, screen_name, description, follow_state, avatar_url, local_url
         
     # Step 1: Copy the Norwegian Blue Jekyll template files to the output directory
@@ -845,7 +868,6 @@ class Processor:
                         self.__tweets[reply_id].in_thread = True
                         self.__tweets[tweet_id].thread_id = no_of_threads
                         thread_start_date = tweet.date
-                        #print('Thread start date:', thread_start_date)
                         self.__thread_stats.add_date(thread_start_date)
                         threads[no_of_threads] = [ reply_id, tweet_id ]
                         tweets_in_threads.append(tweet_id)
@@ -937,7 +959,6 @@ class Processor:
         tweets_output_json_filename = os.path.join(self.config.output_json_folder_name, 'tweets.js')
         tweets_data = []
         for tweet_id in self.__tweets:
-            #print('Tweet ID:', tweet_id)
             tweets_data.append(self.__tweets[tweet_id].as_dict())
         tweets_output_json = json.dumps(tweets_data, indent=4)
         with open(tweets_output_json_filename, 'w', encoding='utf8') as tweets_output_json_file:

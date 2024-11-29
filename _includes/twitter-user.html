@@ -9,8 +9,14 @@
             {% endif %}
         </a>
         <section class="name">
-            <a href="include.twitter_user.url" target="_blank">{{ include.twitter_user.screen_name }}</a>
-            <a href="include.twitter_user.url" target="_blank" class="handle">@{{ include.twitter_user.username }}</a>
+            <a href="{{include.twitter_user.url}}" target="_blank">{{ include.twitter_user.screen_name }}</a>
+            <a href="{{include.twitter_user.url}}" target="_blank" class="handle">@{{ include.twitter_user.username }}
+                {% if include.mode == 'following' %}
+                {% if include.twitter_user.follower %}
+                <span class="follower">Follows you</span>
+                {% endif %}
+                {% endif %}
+            </a>
         </section>
     </header>
     {% if include.twitter_user.description %}
